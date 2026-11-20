@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Star Baby Shop</title>
+<style>
+:root{--ink:#243047;--muted:#718096;--pink:#f5a9bd;--rose:#fff0f4;--blue:#eaf5ff;--line:#edf0f4;--green:#4c9b83}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;color:var(--ink);background:#fff}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer;border:0}
+.top{background:#25334c;color:white;text-align:center;padding:9px 12px;font-size:13px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:5}
+.head{max-width:1180px;margin:auto;padding:16px 20px;display:flex;align-items:center;gap:22px}
+.logo{font-weight:800;font-size:22px;white-space:nowrap}.logo span{color:#e887a5}.logo small{display:block;font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:600}
+.search{flex:1;display:flex;background:#f7f8fa;border:1px solid var(--line);border-radius:30px;overflow:hidden}.search input{border:0;background:transparent;padding:12px 17px;outline:0;width:100%}.search button{background:var(--ink);color:white;padding:0 20px}
+.actions{display:flex;gap:14px;align-items:center}.cart{background:var(--rose);color:#9f526c;padding:11px 15px;border-radius:25px;font-weight:700}
+nav{max-width:1180px;margin:auto;padding:0 20px 13px;display:flex;gap:25px;overflow:auto;white-space:nowrap;font-size:14px;color:#536078}
+nav a:hover{color:#d87596}
+.wrap{max-width:1180px;margin:auto;padding:26px 20px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;min-height:350px;background:linear-gradient(110deg,#fff0f4,#edf7ff);border-radius:22px;overflow:hidden}
+.heroText{padding:55px 48px;align-self:center}.eyebrow{color:#c66d8a;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:clamp(30px,4vw,48px);line-height:1.16;margin:12px 0;color:#26334a}.hero p{color:#657187;line-height:1.8;max-width:440px}
+.primary{background:#e887a5;color:#fff;border-radius:28px;padding:13px 23px;font-weight:700;margin-top:12px}.heroImg{min-height:300px;background:url('https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=1100&q=85') center/cover}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.benefit{border:1px solid var(--line);border-radius:14px;padding:17px;text-align:center;font-size:13px;color:#657187}.benefit b{display:block;color:var(--ink);font-size:14px;margin:5px}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;margin:42px 0 18px}.sectionHead h2{font-size:25px;margin:0}.sectionHead p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.category{background:#f8f9fb;border-radius:15px;padding:20px 10px;text-align:center;font-weight:700;font-size:14px}.category span{font-size:30px;display:block;margin-bottom:8px}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}.filter{background:#f5f6f8;color:#566176;padding:9px 16px;border-radius:25px}.filter.active{background:var(--ink);color:#fff}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{border:1px solid var(--line);border-radius:16px;overflow:hidden;position:relative;background:#fff}.product img{width:100%;height:205px;object-fit:cover;background:#f6f7f8}.tag{position:absolute;top:12px;left:12px;background:#fff0f4;color:#b75f7d;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:700}.pbody{padding:14px}.pbody h3{font-size:15px;margin:0 0 8px}.desc{font-size:12px;color:var(--muted);margin-bottom:10px}.price{font-weight:800;color:#25334c}.old{color:#9aa2af;text-decoration:line-through;font-weight:400;font-size:12px;margin-left:7px}.add{float:right;background:#25334c;color:white;border-radius:20px;padding:8px 12px;font-size:12px}
+.banner{margin:42px 0;background:var(--blue);border-radius:20px;padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner h2{margin:0 0 7px}.banner p{color:var(--muted);margin:0}
+footer{background:#25334c;color:white;margin-top:50px;padding:42px 20px}.foot{max-width:1180px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}.foot p,.foot a{color:#c8d0dc;font-size:13px;line-height:1.8}.foot h3{margin-top:0}
+.overlay{display:none;position:fixed;inset:0;background:#14203377;z-index:10}.drawer{position:absolute;right:0;top:0;height:100%;width:min(420px,100%);background:#fff;padding:24px;overflow:auto}.drawerHead{display:flex;justify-content:space-between;align-items:center}.close{background:#f2f3f6;border-radius:50%;width:34px;height:34px}.cartrow{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:15px 0}.cartrow img{width:65px;height:65px;object-fit:cover;border-radius:10px}.cartrow small{display:block;color:var(--muted);margin-top:6px}.qty{display:flex;gap:8px;align-items:center;margin-top:8px}.qty button{background:#f2f3f6;border-radius:5px;padding:3px 8px}.total{display:flex;justify-content:space-between;font-weight:800;margin:22px 0}.checkout{width:100%;background:#e887a5;color:white;padding:14px;border-radius:25px;font-weight:700}
+@media(max-width:800px){.head{flex-wrap:wrap;gap:12px}.search{order:3;flex-basis:100%}.hero{grid-template-columns:1fr}.heroText{padding:35px 25px}.heroImg{min-height:220px}.benefits{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.wrap{padding:18px 14px}.logo{font-size:19px}.actions{margin-left:auto}.heroText{padding:30px 22px}.categories{grid-template-columns:repeat(2,1fr)}.products{gap:10px}.product img{height:155px}.pbody{padding:11px}.add{float:none;width:100%;margin-top:10px}.banner{padding:22px;display:block}.foot{grid-template-columns:1fr}}
+</style>
+
+<style>
+.checkout-form{display:none;margin-top:16px;padding-top:14px;border-top:1px solid #e9edf2}
+.checkout-form h3{margin:0 0 12px;font-size:17px}
+.checkout-form label{display:block;font-size:13px;font-weight:600;margin:10px 0 5px}
+.checkout-form input,.checkout-form textarea{width:100%;box-sizing:border-box;border:1px solid #dce2e9;border-radius:10px;padding:11px;font:inherit;background:#fff}
+.checkout-form textarea{min-height:76px;resize:vertical}
+.checkout-form .wa-submit{width:100%;margin-top:14px;background:#168b55;color:#fff;border:0;border-radius:10px;padding:13px;font-weight:700;font:inherit;cursor:pointer}
+.checkout-form .hint{font-size:12px;color:#748091;line-height:1.5}
+</style>
+
+</head>
+<body>
+<div class="top">🌟 Little Star Baby Shop — ছোট্ট সোনামণির জন্য ভালোবাসার কেনাকাটা</div>
+<header>
+ <div class="head">
+  <a class="logo" href="#">🌟 Little Star <span>Baby Shop</span><small>LOVE • CARE • COMFORT</small></a>
+  <div class="search"><input id="search" placeholder="পণ্য খুঁজুন..."><button onclick="renderProducts()">খুঁজুন</button></div>
+  <div class="actions"><span>♡</span><button class="cart" onclick="openCart()">কার্ট (<b id="count">0</b>)</button></div>
+ </div>
+ <nav><a href="#">হোম</a><a href="#products">সব পণ্য</a><a href="#categories">ক্যাটাগরি</a><a href="#products">বেবি কেয়ার</a><a href="#products">খেলনা</a><a href="#products">মা ও শিশু</a><a href="#contact">যোগাযোগ</a></nav>
+</header>
+<main class="wrap">
+ <section class="hero">
+  <div class="heroText"><div class="eyebrow">A little love for little ones</div><h1>ছোট্ট সোনামণির<br>প্রতিটি মুহূর্ত হোক<br>আরও সুন্দর</h1><p>নির্বাচিত বেবি essentials, আরামদায়ক পোশাক ও মজার খেলনা—সবকিছু এক জায়গায়।</p><a class="primary" href="#products">কেনাকাটা শুরু করুন →</a></div>
+  <div class="heroImg" role="img" aria-label="শিশুর ছবি"></div>
+ </section>
+ <section class="benefits"><div class="benefit">🚚<b>সহজ ডেলিভারি</b>সারা বাংলাদেশে</div><div class="benefit">🔒<b>নিরাপদ কেনাকাটা</b>বিশ্বস্ত সার্ভিস</div><div class="benefit">💗<b>যত্নে বাছাই</b>ছোট্টদের জন্য</div><div class="benefit">💬<b>সাপোর্ট</b>আমরা পাশে আছি</div></section>
+ <section id="categories"><div class="sectionHead"><div><h2>ক্যাটাগরি অনুযায়ী কিনুন</h2><p>আপনার প্রয়োজনীয় পণ্যটি সহজেই খুঁজে নিন</p></div></div>
+  <div class="categories"><a class="category" href="#products" onclick="setCategory('পোশাক')"><span>👕</span>বেবি পোশাক</a><a class="category" href="#products" onclick="setCategory('খেলনা')"><span>🧸</span>খেলনা</a><a class="category" href="#products" onclick="setCategory('কেয়ার')"><span>🧴</span>বেবি কেয়ার</a><a class="category" href="#products" onclick="setCategory('ফিডিং')"><span>🍼</span>ফিডিং</a><a class="category" href="#products" onclick="setCategory('অ্যাক্সেসরিজ')"><span>🎀</span>অ্যাক্সেসরিজ</a></div>
+ </section>
+ <section id="products"><div class="sectionHead"><div><h2>জনপ্রিয় পণ্য</h2><p>সোনামণির জন্য আমাদের পছন্দের কালেকশন</p></div></div>
+  <div class="filters"><button class="filter active" onclick="setCategory('সব')">সব পণ্য</button><button class="filter" onclick="setCategory('পোশাক')">পোশাক</button><button class="filter" onclick="setCategory('খেলনা')">খেলনা</button><button class="filter" onclick="setCategory('কেয়ার')">বেবি কেয়ার</button><button class="filter" onclick="setCategory('ফিডিং')">ফিডিং</button></div>
+  <div class="products" id="productsGrid"></div>
+ </section>
+ <section class="banner"><div><h2>ছোট্টদের জন্য বিশেষ কিছু 💕</h2><p>নতুন কালেকশন ও অফারের খবর পেতে আমাদের সঙ্গে থাকুন।</p></div><a class="primary" href="#products">কালেকশন দেখুন →</a></section>
+</main>
+<footer id="contact"><div class="foot"><div><h3>🌟 Little Star Baby Shop</h3><p>ছোট্ট সোনামণির প্রতিদিনের প্রয়োজনীয় পণ্য এক জায়গায়।<br>আরও তথ্যের জন্য আমাদের সঙ্গে যোগাযোগ করুন।</p></div><div><h3>দ্রুত লিংক</h3><a href="#">হোম</a><br><a href="#products">সব পণ্য</a><br><a href="#categories">ক্যাটাগরি</a></div><div><h3>যোগাযোগ</h3><p>WhatsApp অর্ডার: 8801779526313<br>অর্ডারের জন্য WhatsApp-এ মেসেজ করুন<br>ঠিকানা: অর্ডারের সময় জানানো হবে</p></div></div>
+ <p style="text-align:center;margin:28px 0 0;font-size:12px">© 2026 Little Star Baby Shop. All rights reserved.</p></footer>
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><div class="drawer"><div class="drawerHead"><h2>আপনার কার্ট</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="total"><span>সর্বমোট</span><span id="total">৳0</span></div><button class="checkout" id="checkoutBtn" onclick="showCheckout()">চেকআউট করুন</button>
+<form class="checkout-form" id="checkoutForm" onsubmit="sendWhatsAppOrder(event)">
+ <h3>অর্ডারের তথ্য দিন</h3>
+ <label for="customerName">আপনার নাম</label><input id="customerName" name="customerName" autocomplete="name" required placeholder="পূর্ণ নাম">
+ <label for="customerPhone">মোবাইল নম্বর</label><input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel" required placeholder="01XXXXXXXXX" pattern="01[0-9]{9}" title="১১ সংখ্যার বাংলাদেশি মোবাইল নম্বর লিখুন">
+ <label for="customerAddress">ডেলিভারি ঠিকানা</label><textarea id="customerAddress" name="customerAddress" autocomplete="street-address" required placeholder="বাসা/রোড, এলাকা, থানা, জেলা"></textarea>
+ <p class="hint">অর্ডার পাঠালে WhatsApp খুলবে। সেখানে মেসেজটি দেখে Send চাপলেই অর্ডারটি আমাদের কাছে যাবে।</p>
+ <button class="wa-submit" type="submit">WhatsApp-এ অর্ডার পাঠান</button>
+</form>
+<p style="font-size:12px;color:#8791a1">অর্ডার নিশ্চিত করতে WhatsApp-এ মেসেজ পাঠাতে হবে। অনলাইন পেমেন্ট এখনো যুক্ত নয়।</p></div></div>
+<script>
+const products=[
+ {id:1,name:'সফট কটন বেবি ড্রেস',cat:'পোশাক',price:850,old:1050,img:'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80',tag:'জনপ্রিয়'},
+ {id:2,name:'কিউট টেডি বিয়ার',cat:'খেলনা',price:650,old:800,img:'https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=700&q=80',tag:'প্রিয়'},
+ {id:3,name:'বেবি কেয়ার সেট',cat:'কেয়ার',price:990,old:1190,img:'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=80',tag:'নতুন'},
+ {id:4,name:'বেবি ফিডিং বোতল',cat:'ফিডিং',price:450,old:550,img:'https://images.unsplash.com/photo-1604917877934-07d8d248d396?auto=format&fit=crop&w=700&q=80',tag:''},
+ {id:5,name:'নরম বেবি কম্বল',cat:'অ্যাক্সেসরিজ',price:720,old:900,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=700&q=80',tag:''},
+ {id:6,name:'বেবি প্লে টয়',cat:'খেলনা',price:550,old:650,img:'https://images.unsplash.com/photo-1566004100631-35d015d6a491?auto=format&fit=crop&w=700&q=80',tag:'নতুন'},
+ {id:7,name:'কমফোর্ট বেবি সেট',cat:'পোশাক',price:1250,old:1450,img:'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=700&q=80',tag:''},
+ {id:8,name:'বেবি বাথ কেয়ার',cat:'কেয়ার',price:680,old:780,img:'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80',tag:''}
+];
+let category='সব',cart={};
+function money(n){return '৳'+n.toLocaleString('en-US')}
+function renderProducts(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const list=products.filter(p=>(category==='সব'||p.cat===category)&&p.name.toLowerCase().includes(q));
+ document.getElementById('productsGrid').innerHTML=list.map(p=>`<article class="product"><img src="${p.img}" alt="${p.name}">${p.tag?`<span class="tag">${p.tag}</span>`:''}<div class="pbody"><h3>${p.name}</h3><div class="desc">${p.cat}</div><span class="price">${money(p.price)} <span class="old">${money(p.old)}</span></span><button class="add" onclick="addCart(${p.id})">কার্টে যোগ +</button></div></article>`).join('')||'<p>কোনো পণ্য পাওয়া যায়নি।</p>';
+}
+function setCategory(c){category=c;document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.textContent.includes(c)||(c==='সব'&&b.textContent==='সব পণ্য')));renderProducts()}
+function addCart(id){cart[id]=(cart[id]||0)+1;updateCart()}
+function updateCart(){let count=Object.values(cart).reduce((a,b)=>a+b,0);document.getElementById('count').textContent=count;let rows=Object.entries(cart).map(([id,n])=>{let p=products.find(x=>x.id==id);return `<div class="cartrow"><img src="${p.img}"><div style="flex:1"><b>${p.name}</b><small>${money(p.price)} × ${n}</small><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${n}<button onclick="changeQty(${id},1)">+</button></div></div></div>`}).join('');document.getElementById('cartItems').innerHTML=rows||'<p style="color:#7b8493">আপনার কার্ট এখনো খালি।</p>';let sum=Object.entries(cart).reduce((s,[id,n])=>s+products.find(p=>p.id==id).price*n,0);document.getElementById('total').textContent=money(sum)}
+function changeQty(id,d){cart[id]+=d;if(cart[id]<=0)delete cart[id];updateCart()}
+function openCart(){document.getElementById('overlay').style.display='block';updateCart()}
+function closeCart(){document.getElementById('overlay').style.display='none'}
+
+const WHATSAPP_NUMBER='8801779526313';
+function showCheckout(){
+ if(!Object.keys(cart).length){alert('আপনার কার্টে আগে পণ্য যোগ করুন।');return}
+ document.getElementById('checkoutForm').style.display='block';
+ document.getElementById('checkoutBtn').style.display='none';
+}
+function sendWhatsAppOrder(event){
+ event.preventDefault();
+ if(!Object.keys(cart).length){alert('আপনার কার্ট খালি।');return}
+ const name=document.getElementById('customerName').value.trim();
+ const phone=document.getElementById('customerPhone').value.trim();
+ const address=document.getElementById('customerAddress').value.trim();
+ if(!name||!phone||!address){alert('অনুগ্রহ করে সব তথ্য পূরণ করুন।');return}
+ const lines=Object.entries(cart).map(([id,qty])=>{
+   const p=products.find(x=>x.id==id);
+   return `• ${p.name} — ${qty}টি × ${money(p.price)} = ${money(p.price*qty)}`;
+ });
+ const total=Object.entries(cart).reduce((sum,[id,qty])=>sum+products.find(p=>p.id==id).price*qty,0);
+ const message=[
+   '🌟 *Little Star Baby Shop — নতুন অর্ডার*',
+   '',
+   `নাম: ${name}`,
+   `মোবাইল: ${phone}`,
+   `ডেলিভারি ঠিকানা: ${address}`,
+   '',
+   '*অর্ডারের তালিকা:*',
+   ...lines,
+   '',
+   `*সর্বমোট: ${money(total)}*`,
+   '',
+   'অনুগ্রহ করে অর্ডারটি নিশ্চিত করুন।'
+ ].join('\n');
+ const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+ window.open(url,'_blank','noopener,noreferrer');
+}
+
+document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')renderProducts()});
+renderProducts();updateCart();
+</script>
+</body></html>
